@@ -1,0 +1,133 @@
+{
+    "language": {
+      "en": "English",
+      "es": "Spanish",
+      "pt": "Portuguese"
+    },
+    "header": {
+      "menu": {
+        "whatNext": "What Next",
+        "basics": "Basics",
+        "tutorials": "Tutorials",
+        "create": "Create",
+        "quickstart": "Quickstart",
+        "destinations": "Destinations",
+        "worldMap": "World Map",
+        "shopping": "Shopping",
+        "marketplace": "Marketplace",
+        "favorites": "Favorites",
+        "purchases": "Purchases",
+        "wishlist": "Wishlist",
+        "buyLinden": "Buy Linden",
+        "buyLand": "Buy Land",
+        "aboutLand": "About Land",
+        "undevelopedLand": "Undeveloped Land",
+        "auctions": "Auctions",
+        "landRentals": "Land Rentals",
+        "privateRegion": "Private Region",
+        "myLindenHome": "My Linden Home",
+        "community": "Community",
+        "search": "Search",
+        "blogs": "Blogs",
+        "forums": "Forums",
+        "events": "Events",
+        "groups": "Groups",
+        "classifieds": "Classifieds",
+        "allDestinations": "All Destinations",
+        "editorsPicks": "Editor's Picks",
+        "recentlyAdded": "Recently Added",
+        "popularPlaces": "Popular Places",
+        "help": "Help",
+        "support": "Support",
+        "downloads": "Downloads",
+        "systemRequirements": "System Requirements",
+        "changePassword": "Change Password",
+        "knowledgeBase": "Knowledge Base",
+        "issueTracker": "Issue Tracker",
+        "newFeatures": "New Features",
+        "answers": "Answers",
+        "supportHistory": "Support History"
+      }
+    },
+    "auth": {
+      "login": {
+        "title": "Login",
+        "email": "Email Address",
+        "password": "Password",
+        "button": "Sign In",
+        "forgot": "Forgot password?",
+        "noAccount": "Don't have an account?",
+        "createAccount": "Create one",
+        "rememberMe": "Remember me",
+        "error": "Invalid email or password"
+      },
+      "register": {
+        "title": "Create Account",
+        "fullName": "Full Name",
+        "email": "Email Address",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "terms": "I agree to the Terms of Service and Privacy Policy",
+        "button": "Create Account",
+        "haveAccount": "Already have an account?",
+        "link": "Sign Up",
+        "success": "Account created successfully!",
+        "login": "Login"
+      }
+    },
+    "sections": {
+      "future": {
+        "eyebrow": "THE FUTURE",
+        "title": "DREAMS OF THE FUTURE",
+        "description": "Your eyes reflect the future we build, where each city light tells a story of endless possibilities and digital dreams.",
+        "button": "Explore →"
+      },
+      "nomad": {
+        "eyebrow": "RELIC HUNTER",
+        "title": "DIGITAL NOMAD",
+        "description": "In the desert of lost civilization, she hunts relics of the past with the precision of the future – the frontier is not a place, but an indomitable state of mind.",
+        "button": "Discover →"
+      },
+      "interface": {
+        "eyebrow": "03 / SPACE",
+        "title": "DREAM INTERFACE",
+        "description": "As our bodies merge with technology, our minds still dream of blue skies – the final frontier is not in the stars, but in reconciling our humanity with our digital future.",
+        "button": "Explore →"
+      }
+    },
+    "gallery": {
+      "title": "Cyberpunk Gallery",
+      "subtitle": "Exploring the boundaries between technology and humanity through images",
+      "images": {
+        "1": "Dreams beyond consciousness.",
+        "2": "Technology without human limits.",
+        "3": "Evolution with adaptation and fusion.",
+        "4": "Cities written in code and electronic memory."
+      },
+      "viewerInfo": "Exploring the boundaries between technology and humanity in a futuristic cyberpunk aesthetic.",
+      "navigation": "Use arrows ← → to navigate",
+      "clickToExpand": "Click to expand"
+    },
+    "footer": {
+      "description": "AviTron is a virtual world where creativity, technology, and humanity converge. Join us in building the future of digital interaction.",
+      "products": "Products",
+      "marketplace": "Marketplace",
+      "landStore": "Land Store",
+      "lindenExchange": "Linden Exchange",
+      "destinations": "Destinations",
+      "resources": "Resources",
+      "support": "Support",
+      "community": "Community",
+      "events": "Events",
+      "blogs": "Blogs",
+      "company": "Company",
+      "about": "About",
+      "careers": "Careers",
+      "press": "Press",
+      "contact": "Contact",
+      "rights": "All rights reserved.",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookies Policy"
+    }
+  }

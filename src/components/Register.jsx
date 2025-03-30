@@ -114,8 +114,12 @@ const Register = () => {
 
     try {
       const response = await axios.post(`${API_URL}/register`, submissionData);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      setSuccess(t('register.success', 'Registro realizado com sucesso!'));
+      
+      // Não armazenamos o usuário no localStorage até que a conta esteja verificada
+      // localStorage.setItem('user', JSON.stringify(response.data.user));
+      
+      setSuccess('Registro realizado com sucesso! Um email de verificação foi enviado para o seu endereço de email. Por favor, verifique sua caixa de entrada e clique no link para ativar sua conta.');
+      
       setFormData({
         username: '',
         password: '',
@@ -123,13 +127,13 @@ const Register = () => {
         securityQuestion: '',
         securityAnswer: '',
         newsConsent: false,
-        termsConsent: true,
+        termsConsent: false,
         avatar: ''
       });
       setInfo('');
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 1500);
+      
+      // Não redirecionamos automaticamente para o dashboard
+      // Esperamos que o usuário verifique o email primeiro
     } catch (error) {
       console.error('Registration error:', error);
       setError(error.response?.data?.message || t('register.error.general', 'Ocorreu um erro durante o registro. Tente novamente.'));

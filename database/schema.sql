@@ -14,12 +14,16 @@ CREATE TABLE IF NOT EXISTS users (
   news_consent BOOLEAN DEFAULT FALSE,
   terms_consent BOOLEAN NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  last_login TIMESTAMP
+  last_login TIMESTAMP,
+  verified BOOLEAN DEFAULT FALSE,
+  verification_token VARCHAR(255),
+  verification_expires TIMESTAMP
 );
 
 -- Criar os índices para melhor desempenho
 CREATE INDEX IF NOT EXISTS idx_username ON users(username);
 CREATE INDEX IF NOT EXISTS idx_email ON users(email);
+CREATE INDEX IF NOT EXISTS idx_verification_token ON users(verification_token);
 
 -- Conceder privilégios ao usuário postgres
 GRANT ALL PRIVILEGES ON TABLE users TO postgres;

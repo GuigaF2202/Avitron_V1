@@ -1,0 +1,133 @@
+{
+    "language": {
+      "en": "Inglês",
+      "es": "Espanhol",
+      "pt": "Português"
+    },
+    "header": {
+      "menu": {
+        "whatNext": "O Que Fazer",
+        "basics": "Fundamentos",
+        "tutorials": "Tutoriais",
+        "create": "Criar",
+        "quickstart": "Início Rápido",
+        "destinations": "Destinos",
+        "worldMap": "Mapa do Mundo",
+        "shopping": "Compras",
+        "marketplace": "Mercado",
+        "favorites": "Favoritos",
+        "purchases": "Compras",
+        "wishlist": "Lista de Desejos",
+        "buyLinden": "Comprar Linden",
+        "buyLand": "Comprar Terreno",
+        "aboutLand": "Sobre Terrenos",
+        "undevelopedLand": "Terreno Não Desenvolvido",
+        "auctions": "Leilões",
+        "landRentals": "Aluguel de Terrenos",
+        "privateRegion": "Região Privada",
+        "myLindenHome": "Minha Casa Linden",
+        "community": "Comunidade",
+        "search": "Pesquisar",
+        "blogs": "Blogs",
+        "forums": "Fóruns",
+        "events": "Eventos",
+        "groups": "Grupos",
+        "classifieds": "Classificados",
+        "allDestinations": "Todos os Destinos",
+        "editorsPicks": "Escolhas do Editor",
+        "recentlyAdded": "Adicionados Recentemente",
+        "popularPlaces": "Lugares Populares",
+        "help": "Ajuda",
+        "support": "Suporte",
+        "downloads": "Downloads",
+        "systemRequirements": "Requisitos do Sistema",
+        "changePassword": "Alterar Senha",
+        "knowledgeBase": "Base de Conhecimento",
+        "issueTracker": "Rastreador de Problemas",
+        "newFeatures": "Novos Recursos",
+        "answers": "Respostas",
+        "supportHistory": "Histórico de Suporte"
+      }
+    },
+    "auth": {
+      "login": {
+        "title": "Entrar",
+        "email": "Endereço de E-mail",
+        "password": "Senha",
+        "button": "Entrar",
+        "forgot": "Esqueceu sua senha?",
+        "noAccount": "Não tem uma conta?",
+        "createAccount": "Criar uma",
+        "rememberMe": "Lembrar de mim",
+        "error": "E-mail ou senha inválidos"
+      },
+      "register": {
+        "title": "Criar Conta",
+        "fullName": "Nome Completo",
+        "email": "Endereço de E-mail",
+        "password": "Senha",
+        "confirmPassword": "Confirmar Senha",
+        "terms": "Concordo com os Termos de Serviço e Política de Privacidade",
+        "button": "Criar Conta",
+        "haveAccount": "Já tem uma conta?",
+        "link": "Cadastre-se",
+        "success": "Conta criada com sucesso!",
+        "login": "Entrar"
+      }
+    },
+    "sections": {
+      "future": {
+        "eyebrow": "O FUTURO",
+        "title": "SONHOS DO FUTURO",
+        "description": "Seus olhos refletem o futuro que construímos, onde cada luz da cidade conta uma história de possibilidades infinitas e sonhos digitais.",
+        "button": "Explorar →"
+      },
+      "nomad": {
+        "eyebrow": "CAÇA-RELÍQUIAS",
+        "title": "NÔMADE DIGITAL",
+        "description": "No deserto da civilização perdida, ela caça relíquias do passado com a precisão do futuro – a fronteira não é um lugar, mas um estado de espírito indômito.",
+        "button": "Descobrir →"
+      },
+      "interface": {
+        "eyebrow": "03 / ESPAÇO",
+        "title": "INTERFACE ONÍRICA",
+        "description": "Enquanto nossos corpos se fundem com a tecnologia, nossas mentes ainda sonham com céus azuis – a última fronteira não está nas estrelas, mas na reconciliação entre nossa humanidade e nosso futuro digital.",
+        "button": "Explorar →"
+      }
+    },
+    "gallery": {
+      "title": "Galeria Cyberpunk",
+      "subtitle": "Explorando os limites entre tecnologia e humanidade através de imagens",
+      "images": {
+        "1": "Sonhos além da consciência.",
+        "2": "Tecnologia sem limites humanos.",
+        "3": "Evolução com adaptação e fusão.",
+        "4": "Cidades escritas em códigos e memória eletrônica."
+      },
+      "viewerInfo": "Explorando os limites entre tecnologia e humanidade em uma estética cyberpunk futurista.",
+      "navigation": "Use as setas ← → para navegar",
+      "clickToExpand": "Clique para expandir"
+    },
+    "footer": {
+      "description": "AviTron é um mundo virtual onde criatividade, tecnologia e humanidade convergem. Junte-se a nós na construção do futuro da interação digital.",
+      "products": "Produtos",
+      "marketplace": "Mercado",
+      "landStore": "Loja de Terrenos",
+      "lindenExchange": "Câmbio de Linden",
+      "destinations": "Destinos",
+      "resources": "Recursos",
+      "support": "Suporte",
+      "community": "Comunidade",
+      "events": "Eventos",
+      "blogs": "Blogs",
+      "company": "Empresa",
+      "about": "Sobre",
+      "careers": "Carreiras",
+      "press": "Imprensa",
+      "contact": "Contato",
+      "rights": "Todos os direitos reservados.",
+      "terms": "Termos de Serviço",
+      "privacy": "Política de Privacidade",
+      "cookies": "Política de Cookies"
+    }
+  }

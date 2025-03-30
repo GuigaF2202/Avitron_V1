@@ -8,6 +8,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
 const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -104,6 +105,10 @@ app.post('/api/register', async (req, res) => {
     const saltRounds = 10;
     const passwordHash = await bcrypt.hash(password, saltRounds);
 
+    // Gerar token de verificação de email
+    const verificationToken = crypto.randomBytes(32).toString('hex');
+    const verificationExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 horas
+
     // Iniciar uma transação para garantir que ambas as inserções sejam bem-sucedidas
     const client = await pool.connect();
     try {
@@ -111,9 +116,9 @@ app.post('/api/register', async (req, res) => {
 
       // Inserir dados na tabela users
       const userResult = await client.query(
-        `INSERT INTO users (username, password_hash, email, avatar_type, security_question, security_answer, terms_consent)
-         VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
-        [username, passwordHash, email, avatar, securityQuestion, securityAnswer, termsConsent]
+        `INSERT INTO users (username, password_hash, email, avatar_type, security_question, security_answer, terms_consent, verified, verification_token, verification_expires)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`,
+        [username, passwordHash, email, avatar, securityQuestion, securityAnswer, termsConsent, false, verificationToken, verificationExpires]
       );
 
       // Processar nome de usuário para firstname e lastname
@@ -148,6 +153,7 @@ app.post('/api/register', async (req, res) => {
         username: username,
         avatar: avatar,
         email: email,
+        verified: false,
         level: 1,
         experience: 250,
         nextLevel: 1000,
@@ -159,9 +165,50 @@ app.post('/api/register', async (req, res) => {
         createdAt: new Date().toISOString()
       };
       
+      // Enviar email de verificação
+      if (transporter) {
+        try {
+          const verificationUrl = `https://avitronmultiverse.com/verificar-email/${verificationToken}`;
+          const mailOptions = {
+            from: process.env.EMAIL_FROM || `"Avitron Multiverse" <${process.env.EMAIL_USER}>`,
+            to: email,
+            subject: 'Verificação de Email - Avitron Multiverse',
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                  <h1 style="color: #4F46E5;">Avitron Multiverse</h1>
+                </div>
+                <div style="background: #f9f9f9; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
+                  <h2 style="margin-top: 0; color: #4F46E5;">Verificação de Email</h2>
+                  <p>Olá ${firstname},</p>
+                  <p>Obrigado por se registrar no Avitron Multiverse!</p>
+                  <p>Por favor, confirme seu endereço de email clicando no botão abaixo:</p>
+                  <div style="text-align: center; margin: 30px 0;">
+                    <a href="${verificationUrl}" style="background-color: #4F46E5; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block;">Verificar meu email</a>
+                  </div>
+                  <p>Se o botão acima não funcionar, copie e cole o link abaixo no seu navegador:</p>
+                  <p style="word-break: break-all; background-color: #eee; padding: 10px; border-radius: 4px; font-size: 14px;">${verificationUrl}</p>
+                  <p>Este link expirará em 24 horas.</p>
+                  <p style="margin-bottom: 0;">Se você não criou uma conta no Avitron Multiverse, por favor ignore este email.</p>
+                </div>
+                <div style="text-align: center; font-size: 12px; color: #666;">
+                  <p>© ${new Date().getFullYear()} Avitron Multiverse. Todos os direitos reservados.</p>
+                </div>
+              </div>
+            `
+          };
+          await transporter.sendMail(mailOptions);
+          console.log(`Email de verificação enviado para: ${email}`);
+        } catch (emailError) {
+          console.error('Erro ao enviar email de verificação:', emailError);
+        }
+      } else {
+        console.log(`URL de verificação: https://avitronmultiverse.com/verificar-email/${verificationToken}`);
+      }
+      
       res.status(201).json({
         status: 'success',
-        message: 'Usuário registrado com sucesso',
+        message: 'Usuário registrado com sucesso. Por favor, verifique seu email para ativar sua conta.',
         user: mockUser
       });
     } catch (error) {
@@ -190,7 +237,7 @@ app.post('/api/login', async (req, res) => {
   try {
     // Buscar usuário pelo nome de usuário
     const userResult = await pool.query(
-      'SELECT id, username, password_hash, avatar_type, email FROM users WHERE username = $1', 
+      'SELECT id, username, password_hash, avatar_type, email, verified FROM users WHERE username = $1', 
       [username]
     );
     
@@ -213,6 +260,14 @@ app.post('/api/login', async (req, res) => {
       });
     }
 
+    // Verificar se o email foi verificado
+    if (!user.verified) {
+      return res.status(403).json({
+        status: 'error',
+        message: 'Sua conta ainda não foi verificada. Por favor, verifique seu email ou solicite um novo link de verificação.'
+      });
+    }
+
     // Atualizar último login
     await pool.query(
       'UPDATE users SET last_login = NOW() WHERE id = $1', 
@@ -225,6 +280,7 @@ app.post('/api/login', async (req, res) => {
       username: user.username,
       avatar: user.avatar_type,
       email: user.email,
+      verified: user.verified,
       level: 5,
       experience: 750,
       nextLevel: 1000,
@@ -248,6 +304,126 @@ app.post('/api/login', async (req, res) => {
       message: 'Erro ao processar login',
       details: error.message
     });
+  }
+});
+
+// Rota para verificar email
+app.get('/api/verificar-email', async (req, res) => {
+  const { token } = req.query;
+
+  if (!token) {
+    return res.status(400).json({ status: 'error', message: 'Token não fornecido' });
+  }
+
+  try {
+    // Verificar se o token existe e não expirou
+    const result = await pool.query(
+      'SELECT id FROM users WHERE verification_token = $1 AND verification_expires > NOW()',
+      [token]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(400).json({ status: 'error', message: 'Token inválido ou expirado' });
+    }
+
+    // Atualizar o status de verificação do usuário
+    await pool.query(
+      'UPDATE users SET verified = TRUE, verification_token = NULL, verification_expires = NULL WHERE id = $1',
+      [result.rows[0].id]
+    );
+
+    res.status(200).json({ status: 'success', message: 'Email verificado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao verificar email:', error);
+    res.status(500).json({ status: 'error', message: 'Erro ao verificar email' });
+  }
+});
+
+// Rota para reenviar email de verificação
+app.post('/api/reenviar-verificacao', async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ status: 'error', message: 'Email obrigatório' });
+  }
+
+  try {
+    // Verificar se o usuário existe e ainda não está verificado
+    const userResult = await pool.query(
+      'SELECT id, username, verified FROM users WHERE email = $1',
+      [email]
+    );
+
+    if (userResult.rows.length === 0) {
+      return res.status(404).json({ status: 'error', message: 'Email não encontrado' });
+    }
+
+    const user = userResult.rows[0];
+
+    if (user.verified) {
+      return res.status(400).json({ status: 'error', message: 'Email já verificado' });
+    }
+
+    // Gerar novo token de verificação
+    const newToken = crypto.randomBytes(32).toString('hex');
+    const tokenExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 horas
+
+    // Atualizar token na tabela users
+    await pool.query(
+      'UPDATE users SET verification_token = $1, verification_expires = $2 WHERE id = $3',
+      [newToken, tokenExpires, user.id]
+    );
+
+    // Processar nome de usuário para firstname
+    const nameParts = user.username.split(' ');
+    const firstname = nameParts[0];
+
+    // Enviar email de verificação
+    if (transporter) {
+      try {
+        const verificationUrl = `https://avitronmultiverse.com/verificar-email/${newToken}`;
+        const mailOptions = {
+          from: process.env.EMAIL_FROM || `"Avitron Multiverse" <${process.env.EMAIL_USER}>`,
+          to: email,
+          subject: 'Verificação de Email - Avitron Multiverse',
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
+              <div style="text-align: center; margin-bottom: 20px;">
+                <h1 style="color: #4F46E5;">Avitron Multiverse</h1>
+              </div>
+              <div style="background: #f9f9f9; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
+                <h2 style="margin-top: 0; color: #4F46E5;">Verificação de Email</h2>
+                <p>Olá ${firstname},</p>
+                <p>Você solicitou um novo link de verificação de email para sua conta no Avitron Multiverse.</p>
+                <p>Por favor, confirme seu endereço de email clicando no botão abaixo:</p>
+                <div style="text-align: center; margin: 30px 0;">
+                  <a href="${verificationUrl}" style="background-color: #4F46E5; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block;">Verificar meu email</a>
+                </div>
+                <p>Se o botão acima não funcionar, copie e cole o link abaixo no seu navegador:</p>
+                <p style="word-break: break-all; background-color: #eee; padding: 10px; border-radius: 4px; font-size: 14px;">${verificationUrl}</p>
+                <p>Este link expirará em 24 horas.</p>
+                <p style="margin-bottom: 0;">Se você não solicitou este email, por favor ignore-o.</p>
+              </div>
+              <div style="text-align: center; font-size: 12px; color: #666;">
+                <p>© ${new Date().getFullYear()} Avitron Multiverse. Todos os direitos reservados.</p>
+              </div>
+            </div>
+          `
+        };
+        await transporter.sendMail(mailOptions);
+        console.log(`Novo email de verificação enviado para: ${email}`);
+      } catch (emailError) {
+        console.error('Erro ao enviar novo email de verificação:', emailError);
+        return res.status(500).json({ status: 'error', message: 'Erro ao enviar email de verificação' });
+      }
+    } else {
+      console.log(`Nova URL de verificação: https://avitronmultiverse.com/verificar-email/${newToken}`);
+    }
+
+    res.status(200).json({ status: 'success', message: 'Email de verificação reenviado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao reenviar verificação:', error);
+    res.status(500).json({ status: 'error', message: 'Erro ao processar solicitação' });
   }
 });
 
@@ -518,13 +694,13 @@ app.post('/api/forgot-password', async (req, res) => {
       // Fallback para depuração se o transporter não estiver configurado
       console.log(`URL de redefinição: https://avitronmultiverse.com/reset-password?token=${token}`);
     }
-
+ 
     // Resposta de sucesso (apenas uma vez, no final da função)
     return res.status(200).json({
       status: 'success',
       message: 'Se o e-mail existir, enviaremos as instruções para redefinição de senha.'
     });
-
+ 
   } catch (error) {
     console.error('Erro ao processar solicitação de redefinição de senha:', error);
     return res.status(500).json({
@@ -533,33 +709,33 @@ app.post('/api/forgot-password', async (req, res) => {
       details: error.message
     });
   }
-});
-
-// Rota para verificar o token de redefinição de senha
-app.get('/api/verify-reset-token', async (req, res) => {
+ });
+ 
+ // Rota para verificar o token de redefinição de senha
+ app.get('/api/verify-reset-token', async (req, res) => {
   const { token } = req.query;
-
+ 
   if (!token) {
     return res.status(400).json({
       status: 'error',
       message: 'Token é obrigatório'
     });
   }
-
+ 
   try {
     // Verificar se o token existe e não expirou
     const result = await pool.query(
       'SELECT principalid FROM useraccounts WHERE reset_token = $1 AND reset_token_expires > NOW()',
       [token]
     );
-
+ 
     if (result.rows.length === 0) {
       return res.status(400).json({
         status: 'error',
         message: 'Token inválido ou expirado'
       });
     }
-
+ 
     res.status(200).json({
       status: 'success',
       message: 'Token válido',
@@ -573,89 +749,89 @@ app.get('/api/verify-reset-token', async (req, res) => {
       details: error.message
     });
   }
-});
-
-// Rota para redefinir a senha com o token
-app.post('/api/reset-password', async (req, res) => {
+ });
+ 
+ // Rota para redefinir a senha com o token
+ app.post('/api/reset-password', async (req, res) => {
   const { token, newPassword } = req.body;
-
+ 
   if (!token || !newPassword) {
     return res.status(400).json({
       status: 'error',
       message: 'Token e nova senha são obrigatórios'
     });
   }
-
+ 
   try {
     // Verificar se o token existe e não expirou
     const tokenResult = await pool.query(
       'SELECT principalid FROM useraccounts WHERE reset_token = $1 AND reset_token_expires > NOW()',
       [token]
     );
-
+ 
     if (tokenResult.rows.length === 0) {
       return res.status(400).json({
         status: 'error',
         message: 'Token inválido ou expirado'
       });
     }
-
+ 
     const principalId = tokenResult.rows[0].principalid;
-
+ 
     // Buscar o usuário pelo principalId
     const userAccountResult = await pool.query(
       'SELECT firstname, lastname FROM useraccounts WHERE principalid = $1',
       [principalId]
     );
-
+ 
     if (userAccountResult.rows.length === 0) {
       return res.status(404).json({
         status: 'error',
         message: 'Usuário não encontrado'
       });
     }
-
+ 
     const { firstname, lastname } = userAccountResult.rows[0];
     const fullName = lastname === 'Resident' ? firstname : `${firstname} ${lastname}`;
-
+ 
     // Buscar o ID do usuário na tabela users pelo nome
     const userResult = await pool.query(
       'SELECT id FROM users WHERE username = $1',
       [fullName]
     );
-
+ 
     if (userResult.rows.length === 0) {
       return res.status(404).json({
         status: 'error',
         message: 'Usuário não encontrado na tabela users'
       });
     }
-
+ 
     const userId = userResult.rows[0].id;
-
+ 
     // Hash da nova senha
     const saltRounds = 10;
     const newPasswordHash = await bcrypt.hash(newPassword, saltRounds);
-
+ 
     // Atualizar a senha e limpar o token
     const client = await pool.connect();
     try {
       await client.query('BEGIN');
-
+ 
       // Atualizar senha na tabela users
       await client.query(
         'UPDATE users SET password_hash = $1 WHERE id = $2',
         [newPasswordHash, userId]
       );
-
+ 
       // Limpar o token de redefinição
       await client.query(
         'UPDATE useraccounts SET reset_token = NULL, reset_token_expires = NULL WHERE principalid = $1',
         [principalId]
       );
-
+ 
       await client.query('COMMIT');
-
+ 
       res.status(200).json({
         status: 'success',
         message: 'Senha redefinida com sucesso'
@@ -674,10 +850,10 @@ app.post('/api/reset-password', async (req, res) => {
       details: error.message
     });
   }
-});
-
-// Configurações de segurança adicionais para produção
-if (process.env.NODE_ENV === 'production') {
+ });
+ 
+ // Configurações de segurança adicionais para produção
+ if (process.env.NODE_ENV === 'production') {
   // Configurar helmet para segurança adicional
   const helmet = require('helmet');
   app.use(helmet());
@@ -702,10 +878,10 @@ if (process.env.NODE_ENV === 'production') {
   app.use('/api/', limiter);
   
   console.log('Servidor rodando em modo de produção com proteções adicionais.');
-}
-
-// Iniciar o servidor
-app.listen(port, () => {
+ }
+ 
+ // Iniciar o servidor
+ app.listen(port, () => {
   console.log(`Servidor em execução na porta ${port}`);
   console.log(`Teste a API em https://avitronmultiverse.com:${port}/api/health`);
-});
+ });

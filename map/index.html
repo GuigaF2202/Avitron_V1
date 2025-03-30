@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa do Grid OpenSim</title>
+    <link rel="stylesheet" href="grid-map.css">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="map-container">
+        <div class="map-header">
+            <div class="title">
+                <h1>Mapa do Grid OpenSim</h1>
+                <p id="grid-stats">Carregando estatísticas...</p>
+            </div>
+            <div class="controls">
+                <button id="zoom-in" title="Aproximar"><i class="fas fa-plus"></i></button>
+                <button id="zoom-out" title="Afastar"><i class="fas fa-minus"></i></button>
+                <button id="reset-view" title="Resetar visualização"><i class="fas fa-sync-alt"></i></button>
+                <select id="theme-selector">
+                    <option value="default">Tema Padrão</option>
+                    <option value="satellite">Satélite</option>
+                    <option value="dark">Escuro</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="map-wrapper">
+            <div id="grid-map" class="grid-map default-theme">
+                <div id="map-canvas" class="map-canvas">
+                    <!-- As regiões serão renderizadas aqui dinamicamente -->
+                    <div class="loading-overlay">
+                        <div class="spinner"></div>
+                        <p>Carregando mapa do grid...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="coordinates-display">
+                <span>X: <span id="coord-x">0</span></span>
+                <span>Y: <span id="coord-y">0</span></span>
+            </div>
+        </div>
+        
+        <div class="map-sidebar">
+            <div class="search-box">
+                <input type="text" id="region-search" placeholder="Buscar região...">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="region-info-panel">
+                <h3>Informações da Região</h3>
+                <div id="region-info">
+                    <p>Selecione uma região no mapa para ver detalhes.</p>
+                </div>
+            </div>
+            
+            <div class="region-list-panel">
+                <h3>Regiões (<span id="region-count">0</span>)</h3>
+                <div class="filter-options">
+                    <label><input type="checkbox" id="filter-online" checked> Online</label>
+                    <label><input type="checkbox" id="filter-offline" checked> Offline</label>
+                </div>
+                <div id="region-list" class="region-list">
+                    <!-- Lista de regiões será preenchida aqui -->
+                    <p>Carregando lista de regiões...</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="map-footer">
+            <p>Última atualização: <span id="last-update">Carregando...</span></p>
+            <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar ao Dashboard</a>
+        </div>
+    </div>
+    
+    <!-- Template para popup de região -->
+    <div id="region-popup" class="region-popup" style="display:none;">
+        <div class="popup-header">
+            <h3 id="popup-title">Nome da Região</h3>
+            <span id="popup-close" class="popup-close">&times;</span>
+        </div>
+        <div class="popup-content">
+            <div id="popup-info"></div>
+            <div class="popup-actions">
+                <button id="teleport-btn" class="teleport-btn">Teleportar</button>
+                <button id="more-info-btn" class="more-info-btn">Mais Informações</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="grid-map.js"></script>
+</body>
+</html>

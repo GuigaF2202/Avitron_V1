@@ -9,6 +9,8 @@ export default {
       colors: {
         'neon-cyan': '#00F0FF',
         'neon-pink': '#FF0055',
+         'gold': '#a57c00',
+         'bergundy': '#0d0003'
       },
       boxShadow: {
         'neon-cyan': '0 0 10px rgba(0, 240, 255, 0.5)',
