@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard OpenSim</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="logo.png" alt="OpenSim Logo">
+                <h1>Dashboard OpenSim</h1>
+            </div>
+            <div class="user-info">
+                <span>Admin</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </header>
+
+        <div class="status-bar">
+            <div class="status online">
+                <i class="fas fa-circle"></i> Grid Online
+            </div>
+            <div class="timestamp">
+                Última atualização: <span id="last-update">Carregando...</span>
+            </div>
+        </div>
+
+        <main>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Total de Regiões</h3>
+                        <p class="counter" id="regions-count">0</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Usuários Online</h3>
+                        <p class="counter" id="online-users">0</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Usuários Registrados</h3>
+                        <p class="counter" id="total-users">0</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Total de Prims</h3>
+                        <p class="counter" id="total-prims">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts">
+                <div class="chart-container">
+                    <h3>Atividade de Usuários (24h)</h3>
+                    <canvas id="user-activity-chart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Uso de Recursos</h3>
+                    <canvas id="resource-usage-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="tables">
+                <div class="table-container">
+                    <h3>Regiões Mais Populares</h3>
+                    <table id="popular-regions">
+                        <thead>
+                            <tr>
+                                <th>Região</th>
+                                <th>Visitantes</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Carregando dados...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="table-container">
+                    <h3>Últimos Logins</h3>
+                    <table id="recent-logins">
+                        <thead>
+                            <tr>
+                                <th>Usuário</th>
+                                <th>Região</th>
+                                <th>Horário</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Carregando dados...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>OpenSim Dashboard v1.0 | &copy; 2023</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
