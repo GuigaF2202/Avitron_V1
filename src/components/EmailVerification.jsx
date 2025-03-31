@@ -1,9 +1,10 @@
-// src/components/EmailVerification.jsx
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const EmailVerification = () => {
+  const { t } = useTranslation();
   const { token } = useParams();
   const [status, setStatus] = useState('loading');
   const [message, setMessage] = useState('');
@@ -16,7 +17,7 @@ const EmailVerification = () => {
         setMessage(response.data.message);
       } catch (error) {
         setStatus('error');
-        setMessage(error.response?.data?.message || 'Ocorreu um erro durante a verificação do email.');
+        setMessage(error.response?.data?.message || t('email.verification.failed_message'));
       }
     };
 
@@ -24,9 +25,9 @@ const EmailVerification = () => {
       verifyEmail();
     } else {
       setStatus('error');
-      setMessage('Token de verificação não fornecido.');
+      setMessage(t('email.verification.token_missing', 'Token de verificação não fornecido.'));
     }
-  }, [token]);
+  }, [token, t]);
 
   if (status === 'loading') {
     return (
@@ -36,8 +37,8 @@ const EmailVerification = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-white mb-2">Verificando seu email</h2>
-        <p className="text-gray-400">Aguarde enquanto verificamos seu endereço de email...</p>
+        <h2 className="text-2xl font-bold text-white mb-2">{t('email.verification.verifying')}</h2>
+        <p className="text-gray-400">{t('email.verification.wait')}</p>
       </div>
     );
   }
@@ -50,20 +51,20 @@ const EmailVerification = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="text-2xl font-bold text-white mb-2">Email Verificado!</h2>
-        <p className="text-gray-300 mb-6">Seu email foi verificado com sucesso. Sua conta está agora ativa.</p>
+        <h2 className="text-2xl font-bold text-white mb-2">{t('email.verification.success')}</h2>
+        <p className="text-gray-300 mb-6">{t('email.verification.success_message')}</p>
         <div className="flex flex-col space-y-3">
           <Link 
             to="/auth" 
             className="py-3 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 rounded-lg text-white font-medium transition-colors"
           >
-            Entrar na sua conta
+            {t('email.verification.enter_account')}
           </Link>
           <Link 
             to="/" 
             className="py-3 px-4 bg-gray-700 hover:bg-gray-600 rounded-lg text-white transition-colors"
           >
-            Ir para a página inicial
+            {t('email.verification.go_home')}
           </Link>
         </div>
       </div>
@@ -77,20 +78,20 @@ const EmailVerification = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
         </svg>
       </div>
-      <h2 className="text-2xl font-bold text-white mb-2">Verificação Falhou</h2>
-      <p className="text-gray-300 mb-6">{message || 'Não foi possível verificar seu email. O link pode estar expirado ou ser inválido.'}</p>
+      <h2 className="text-2xl font-bold text-white mb-2">{t('email.verification.failed')}</h2>
+      <p className="text-gray-300 mb-6">{message || t('email.verification.failed_message')}</p>
       <div className="flex flex-col space-y-3">
         <Link 
           to="/reenviar-verificacao" 
           className="py-3 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 rounded-lg text-white font-medium transition-colors"
         >
-          Reenviar email de verificação
+          {t('email.verification.resend')}
         </Link>
         <Link 
           to="/auth" 
           className="py-3 px-4 bg-gray-700 hover:bg-gray-600 rounded-lg text-white transition-colors"
         >
-          Voltar para login
+          {t('email.verification.back_login')}
         </Link>
       </div>
     </div>

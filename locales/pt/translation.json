@@ -1,21 +1,21 @@
 {
   "gallery": {
     "images": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": ""
+      "1": "Sonhos além da consciência.",
+      "2": "Tecnologia sem limites humanos.",
+      "3": "Evolução com adaptação e fusão.",
+      "4": "Cidades escritas em códigos e memória eletrônica."
     },
-    "viewerInfo": "",
-    "navigation": "",
-    "title": "",
-    "subtitle": "",
-    "clickToExpand": ""
+    "viewerInfo": "Explorando os limites entre tecnologia e humanidade em uma estética cyberpunk futurista.",
+    "navigation": "Use as setas ← → para navegar",
+    "title": "Galeria Cyberpunk",
+    "subtitle": "Explorando os limites entre tecnologia e humanidade através de imagens",
+    "clickToExpand": "Clique para expandir"
   },
   "auth": {
     "login": {
       "success": "Login realizado com sucesso!",
-      "error": "Credenciais inválidas. Tente novamente.",
+      "error": "E-mail ou senha inválidos",
       "title": "Entrar",
       "subtitle": "Acesse o Metaverso Avitron",
       "processing": "Conectando...",
@@ -27,7 +27,7 @@
     "password": "Senha",
     "resetPassword": "Redefinir Senha",
     "register": {
-      "link": "Criar nova conta"
+      "link": "Cadastre-se"
     },
     "backToLogin": "Voltar para o login"
   },
@@ -123,17 +123,17 @@
   },
   "email": {
     "verification": {
-      "failed_message": "",
+      "failed_message": "Não foi possível verificar seu email. O link pode estar expirado ou ser inválido.",
       "token_missing": "Token de verificação não fornecido.",
-      "verifying": "",
-      "wait": "",
-      "success": "",
-      "success_message": "",
-      "enter_account": "",
-      "go_home": "",
-      "failed": "",
-      "resend": "",
-      "back_login": ""
+      "verifying": "Verificando seu email",
+      "wait": "Aguarde enquanto verificamos seu endereço de email...",
+      "success": "Email Verificado!",
+      "success_message": "Seu email foi verificado com sucesso. Sua conta está agora ativa.",
+      "enter_account": "Entrar na sua conta",
+      "go_home": "Ir para a página inicial",
+      "failed": "Verificação Falhou",
+      "resend": "Reenviar email de verificação",
+      "back_login": "Voltar para login"
     },
     "resend": {
       "email_required": "Por favor, informe seu endereço de email.",
@@ -149,76 +149,76 @@
   },
   "footer": {
     "terminal": {
-      "scanning": "",
-      "noAnomalies": "",
-      "analyzingNetwork": "",
-      "stableConnections": "",
-      "queryingUsers": "",
-      "activeCreators": "",
-      "monitoringFlow": "",
-      "activityPeak": "",
-      "checkingUpdates": "",
-      "systemUpdated": "",
-      "establishing": "",
-      "accessGranted": "",
-      "exploreWorlds": "",
-      "createUniverse": "",
-      "connectMinds": "",
-      "connections": "",
-      "active": "",
-      "status": "",
-      "online": ""
+      "scanning": "Escaneando anomalias dimensionais...",
+      "noAnomalies": "Nenhuma anomalia detectada nos parâmetros atuais.",
+      "analyzingNetwork": "Analisando rede multidimensional...",
+      "stableConnections": "Conexões estáveis em todos os 7 planos principais.",
+      "queryingUsers": "Consultando base de dados de usuários...",
+      "activeCreators": "42 criadores ativos na dimensão Nexus-Prime.",
+      "monitoringFlow": "Monitorando fluxo criativo interdimensional...",
+      "activityPeak": "Pico de atividade detectado no setor de design visual.",
+      "checkingUpdates": "Verificando atualizações do sistema...",
+      "systemUpdated": "Sistema AviTron atualizado para a versão 1.2.5.",
+      "establishing": "Estabelecendo conexões dimensionais...",
+      "accessGranted": "Acesso concedido. Bem-vindo ao AviTron Multiverse.",
+      "exploreWorlds": "explorar_mundos()",
+      "createUniverse": "criar_universo()",
+      "connectMinds": "conectar_mentes()",
+      "connections": "conexões",
+      "active": "ativas",
+      "status": "status",
+      "online": "online"
     },
     "multiverse": {
       "item1": {
-        "title": "",
-        "date": "",
-        "category": ""
+        "title": "AviTronianos terão conteúdo original e novo do kitbash3D!",
+        "date": "Mar, 2025",
+        "category": "KITBASH3D"
       },
       "item2": {
-        "title": "",
-        "date": "",
-        "category": ""
+        "title": "Tem ideias, sonhos e fantasias? Traga para o AviTron Multiverse!",
+        "date": "Mar, 2025",
+        "category": "IDEAÇÃO"
       },
       "item3": {
-        "title": "",
-        "date": "",
-        "category": ""
+        "title": "AviTron! Transforme suas fantasias em realidade!",
+        "date": "Mar, 2025",
+        "category": "TRANSFORMAÇÃO"
       },
-      "title": ""
+      "title": "AviTron Multiverse"
     },
     "logo": {
-      "alt": ""
+      "alt": "Logo AviTron"
     },
-    "description": "",
+    "description": "Onde tecnologia e imaginação se fundem para criar experiências dimensionais únicas no multiverso digital.",
     "social": {
-      "facebook": "",
-      "instagram": "",
-      "whatsapp": "",
-      "tiktok": ""
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "whatsapp": "WhatsApp",
+      "tiktok": "TikTok"
     },
-    "rights": ""
+    "rights": "Todos os direitos reservados."
   },
   "header": {
     "menu": {
-      "whatNext": "",
-      "basics": "",
-      "tutorials": "",
-      "create": "",
-      "shopping": "",
-      "marketplace": "",
-      "favorites": "",
-      "purchases": "",
-      "community": "",
-      "search": "",
-      "blogs": "",
-      "forums": ""
+      "whatNext": "O Que Fazer",
+      "basics": "Fundamentos",
+      "tutorials": "Tutoriais",
+      "create": "Criar",
+      "shopping": "Compras",
+      "marketplace": "Mercado",
+      "favorites": "Favoritos",
+      "purchases": "Compras",
+      "community": "Comunidade",
+      "search": "Pesquisar",
+      "blogs": "Blogs",
+      "forums": "Fóruns"
     },
     "logo": {
-      "alt": "AviTron Logo"
+      "alt": "Logo AviTron"
     },
     "mobile": {
-      "toggleMenu": ""
+      "toggleMenu": "Alternar menu"
     }
   },
   "homePage": {
@@ -226,17 +226,17 @@
     "galleryTitle": "Image Gallery"
   },
   "language": {
-    "en": "",
-    "es": "",
-    "pt": "",
-    "change": "",
-    "select": "",
+    "en": "Inglês",
+    "es": "Espanhol",
+    "pt": "Português",
+    "change": "Mudar idioma para {{name}}",
+    "select": "Selecionar idioma",
     "errors": {
-      "getting": "Error getting language:",
-      "saving": "Could not save language to localStorage:",
-      "changing": "Error changing language:",
-      "effect": "Error in language effect:",
-      "hook": "Error in useLanguage hook:"
+      "getting": "Erro ao obter o idioma",
+      "saving": "Não foi possível salvar o idioma no localStorage",
+      "changing": "Erro ao mudar o idioma",
+      "effect": "Erro no efeito de idioma",
+      "hook": "Erro no hook useLanguage"
     }
   },
   "marketplace": {
@@ -323,41 +323,41 @@
     "passwords_not_match": "As senhas não coincidem",
     "password_too_short": "A senha deve ter pelo menos 8 caracteres",
     "reset_error": "Erro ao redefinir a senha",
-    "verifying": "",
-    "error_title": "",
-    "request_new": "",
-    "success_title": "",
-    "success_message": "",
-    "go_login": "",
-    "title": "",
-    "new_password": "",
-    "password_placeholder": "",
-    "confirm_password": "",
-    "confirm_placeholder": "",
-    "processing": "",
-    "submit": ""
+    "verifying": "Verificando...",
+    "error_title": "Erro na Redefinição",
+    "request_new": "Solicitar Nova Redefinição",
+    "success_title": "Senha Redefinida!",
+    "success_message": "Sua senha foi redefinida com sucesso. Você será redirecionado para a página de login em alguns segundos.",
+    "go_login": "Ir para Login",
+    "title": "Redefinir Senha",
+    "new_password": "Nova Senha",
+    "password_placeholder": "Digite sua nova senha",
+    "confirm_password": "Confirmar Senha",
+    "confirm_placeholder": "Confirme sua nova senha",
+    "processing": "Processando...",
+    "submit": "Redefinir Senha"
   },
   "sections": {
     "future": {
-      "title": "",
-      "eyebrow": "",
-      "description": "",
-      "button": ""
+      "title": "SONHOS DO FUTURO",
+      "eyebrow": "O FUTURO",
+      "description": "Seus olhos refletem o futuro que construímos, onde cada luz da cidade conta uma história de possibilidades infinitas e sonhos digitais.",
+      "button": "Explorar →"
     },
     "nomad": {
-      "title": "",
-      "eyebrow": "",
-      "description": "",
-      "button": ""
+      "title": "NÔMADE DIGITAL",
+      "eyebrow": "CAÇA-RELÍQUIAS",
+      "description": "No deserto da civilização perdida, ela caça relíquias do passado com a precisão do futuro – a fronteira não é um lugar, mas um estado de espírito indômito.",
+      "button": "Descobrir →"
     },
     "interface": {
-      "title": "",
-      "eyebrow": "",
-      "description": "",
-      "button": ""
+      "title": "INTERFACE ONÍRICA",
+      "eyebrow": "03 / ESPAÇO",
+      "description": "Enquanto nossos corpos se fundem com a tecnologia, nossas mentes ainda sonham com céus azuis – a última fronteira não está nas estrelas, mas na reconciliação entre nossa humanidade e nosso futuro digital.",
+      "button": "Explorar →"
     }
   },
   "app": {
-    "mainContent": "Main content"
+    "mainContent": "Conteúdo principal"
   }
 }

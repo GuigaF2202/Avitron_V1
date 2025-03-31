@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const AnimatedImageGallery = () => {
-  // Estado para controlar qual imagem está expandida
+  const { t } = useTranslation();
   const [expandedImageIndex, setExpandedImageIndex] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -76,22 +77,22 @@ const AnimatedImageGallery = () => {
     {
       src: "images/animation1.jpg",
       rotation: isMobile ? "rotate-3" : "rotate-6",
-      alt: "Sonhos além da consciência."
+      alt: t("gallery.images.1")
     },
     {
       src: "images/animation2.jpg",
       rotation: isMobile ? "-rotate-3" : "-rotate-6",
-      alt: "Tecnologia sem limites do ser humano."
+      alt: t("gallery.images.2")
     },
     {
       src: "images/animation3.jpg",
       rotation: isMobile ? "rotate-3" : "rotate-6",
-      alt: "Evolução com adaptação e fusão."
+      alt: t("gallery.images.3")
     },
     {
       src: "images/animation4.jpg",
       rotation: isMobile ? "-rotate-3" : "-rotate-6",
-      alt: "Cidades escritas em códigos e memória eletrônica."
+      alt: t("gallery.images.4")
     }
   ];
 
@@ -142,7 +143,7 @@ const AnimatedImageGallery = () => {
               </span>
               <h3 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">{images[expandedImageIndex].alt}</h3>
               <p className="text-sm sm:text-base text-neutral-300 max-w-3xl">
-                Explorando os limites entre tecnologia e humanidade em uma estética cyberpunk futurista.
+                {t("gallery.viewerInfo")}
               </p>
             </div>
             
@@ -178,7 +179,7 @@ const AnimatedImageGallery = () => {
             {/* Dica de navegação - apenas em desktop */}
             {!isMobile && (
               <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/30 backdrop-blur-sm rounded-full px-4 py-1 text-white/70 text-sm opacity-70">
-                Use as setas ← → para navegar
+                {t("gallery.navigation")}
               </div>
             )}
           </div>
@@ -189,8 +190,8 @@ const AnimatedImageGallery = () => {
       <div className="max-w-screen-xl mx-auto relative z-10">
         {/* Título da seção */}
         <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-transparent">Galeria Cyberpunk</h2>
-          <p className="mt-4 text-cyan-400/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">Explorando os limites entre tecnologia e humanidade através de imagens</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-transparent">{t("gallery.title")}</h2>
+          <p className="mt-4 text-cyan-400/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">{t("gallery.subtitle")}</p>
         </div>
         
         {/* Grid responsivo para imagens */}
@@ -240,7 +241,7 @@ const AnimatedImageGallery = () => {
           <div className="text-center mt-8">
             <p className="text-cyan-500/50 text-sm font-mono inline-block py-2 px-4 rounded-full border border-cyan-500/10">
               <span className="inline-block animate-pulse mr-1">»</span> 
-              Clique para expandir 
+              {t("gallery.clickToExpand")} 
               <span className="inline-block animate-pulse ml-1">«</span>
             </p>
           </div>

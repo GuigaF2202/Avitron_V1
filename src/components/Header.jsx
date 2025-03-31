@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import LanguageSelector from './LanguageSelector';
+import '../i18n';
+import '../index.css';
+import { initReactI18next } from "react-i18next"; // NÃO de i18next-http-backend
+import Backend from "i18next-http-backend"; // Importe Backend daqui
 
 const Header = () => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMobileSection, setActiveMobileSection] = useState(null);
@@ -25,20 +32,20 @@ const Header = () => {
   };
 
   const menuItems = [
-    { label: "What Next", items: [
-      { label: "Basics", href: '#' },
-      { label: "Tutorials", href: '#' },
-      { label: "Create", href: '#' }
+    { label: t("header.menu.whatNext"), items: [
+      { label: t("header.menu.basics"), href: '#' },
+      { label: t("header.menu.tutorials"), href: '#' },
+      { label: t("header.menu.create"), href: '#' }
     ]},
-    { label: "Shopping", items: [
-      { label: "Marketplace", href: '/marketplace' },
-      { label: "Favorites", href: '#' },
-      { label: "Purchases", href: '#' }
+    { label: t("header.menu.shopping"), items: [
+      { label: t("header.menu.marketplace"), href: '/marketplace' },
+      { label: t("header.menu.favorites"), href: '#' },
+      { label: t("header.menu.purchases"), href: '#' }
     ]},
-    { label: "Community", items: [
-      { label: "Search", href: '#' },
-      { label: "Blogs", href: '#' },
-      { label: "Forums", href: '#' }
+    { label: t("header.menu.community"), items: [
+      { label: t("header.menu.search"), href: '#' },
+      { label: t("header.menu.blogs"), href: '#' },
+      { label: t("header.menu.forums"), href: '#' }
     ]}
   ];
 
@@ -53,7 +60,7 @@ const Header = () => {
             <Link to="/" className="flex items-center">
               <img 
                 src="images/logo.png" 
-                alt="AviTron Logo" 
+                alt={t("header.logo.alt", "AviTron Logo")}
                 className="h-10 w-10 mr-2"
               />
               <span className="text-xl md:text-2xl font-bold cyberpunk-text tracking-wider neon-pulse">AviTron</span>
@@ -83,18 +90,19 @@ const Header = () => {
           </nav>
 
           {/* Auth Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-6">
+            <LanguageSelector />
             <Link
               to="/auth"
               className="cyberpunk-button text-sm py-1.5 px-4"
             >
-              Sign In
+              {t("auth.login.title")}
             </Link>
             <Link
               to="/auth?register=true"
               className="cyberpunk-button-pink text-sm py-1.5 px-4"
             >
-              Sign Up
+              {t("auth.register.link")}
             </Link>
           </div>
 
@@ -103,6 +111,7 @@ const Header = () => {
             <button 
               className="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={t("header.mobile.toggleMenu")}
             >
               <span className={`block w-6 h-0.5 bg-[#00F0FF] transition-transform duration-300 ${mobileMenuOpen ? 'transform rotate-45 translate-y-2' : ''}`}></span>
               <span className={`block w-6 h-0.5 bg-[#00F0FF] transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`}></span>
@@ -163,14 +172,14 @@ const Header = () => {
               className="cyberpunk-button w-full py-2 px-4 text-center"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Sign In
+              {t("auth.login.title")}
             </Link>
             <Link
               to="/auth?register=true"
               className="cyberpunk-button-pink w-full py-2 px-4 text-center"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Sign Up
+              {t("auth.register.link")}
             </Link>
           </div>
         </div>

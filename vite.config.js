@@ -7,7 +7,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         secure: true
       }
@@ -23,7 +23,10 @@ export default defineConfig({
         drop_console: true
       }
     },
-    assetsInclude: ['**/*.jpg', '**/*.png', '**/*.svg', '**/*.webp', '**/*.gif'],
+    assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.svg', '**/*.webp', '**/*.gif'],
+    rollupOptions: {
+      external: ['i18next-http-backend']
+    }
   },
   resolve: {
     alias: {

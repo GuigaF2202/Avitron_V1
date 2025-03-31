@@ -1,0 +1,57 @@
+{
+  "header": {
+    "menu": {
+      "quickstart": "Início Rápido",
+      "destinations": "Destinos",
+      "worldMap": "Mapa do Mundo",
+      "wishlist": "Lista de Desejos",
+      "buyLinden": "Comprar Linden",
+      "buyLand": "Comprar Terreno",
+      "aboutLand": "Sobre Terrenos",
+      "undevelopedLand": "Terreno Não Desenvolvido",
+      "auctions": "Leilões",
+      "landRentals": "Aluguel de Terrenos",
+      "privateRegion": "Região Privada",
+      "myLindenHome": "Minha Casa Linden",
+      "events": "Eventos",
+      "groups": "Grupos",
+      "classifieds": "Classificados",
+      "allDestinations": "Todos os Destinos",
+      "editorsPicks": "Escolhas do Editor",
+      "recentlyAdded": "Adicionados Recentemente",
+      "popularPlaces": "Lugares Populares",
+      "help": "Ajuda",
+      "support": "Suporte",
+      "downloads": "Downloads",
+      "systemRequirements": "Requisitos do Sistema",
+      "changePassword": "Alterar Senha",
+      "knowledgeBase": "Base de Conhecimento",
+      "issueTracker": "Rastreador de Problemas",
+      "newFeatures": "Novos Recursos",
+      "answers": "Respostas",
+      "supportHistory": "Histórico de Suporte"
+    }
+  },
+  "auth": {
+    "login": {
+      "email": "Endereço de E-mail",
+      "password": "Senha",
+      "forgot": "Esqueceu sua senha?",
+      "noAccount": "Não tem uma conta?",
+      "createAccount": "Criar uma",
+      "rememberMe": "Lembrar de mim"
+    },
+    "register": {
+      "title": "Criar Conta",
+      "fullName": "Nome Completo",
+      "email": "Endereço de E-mail",
+      "password": "Senha",
+      "confirmPassword": "Confirmar Senha",
+      "terms": "Concordo com os Termos de Serviço e Política de Privacidade",
+      "button": "Criar Conta",
+      "haveAccount": "Já tem uma conta?",
+      "success": "Conta criada com sucesso!",
+      "login": "Entrar"
+    }
+  }
+}

@@ -1,14 +1,14 @@
 // Carregar variáveis de ambiente
 require('dotenv').config();
 
-const express = require('express');
-const { Pool } = require('pg');
-const bcrypt = require('bcrypt');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const { v4: uuidv4 } = require('uuid');
-const nodemailer = require('nodemailer');
-const crypto = require('crypto');
+import express from 'express';
+import { Pool } from 'pkg';
+import { hash, compare } from 'bcrypt';
+import cors from 'cors';
+import { json } from 'body-parser';
+import { v4 as uuidv4 } from 'uuid';
+import { createTransport } from 'nodemailer';
+import { randomBytes } from 'crypto';
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -23,12 +23,12 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']    
 }));
-app.use(bodyParser.json());
+app.use(json());
 
 // Configuração do transporte de e-mail para Zoho
 let transporter;
 try {
-  transporter = nodemailer.createTransport({
+  transporter = createTransport({
     host: process.env.EMAIL_HOST || 'smtp.zoho.com',
     port: process.env.EMAIL_PORT || 587,
     secure: process.env.EMAIL_PORT === '465', // true para porta 465, false para outras portas
@@ -103,10 +103,10 @@ app.post('/api/register', async (req, res) => {
 
     // Hash da senha
     const saltRounds = 10;
-    const passwordHash = await bcrypt.hash(password, saltRounds);
+    const passwordHash = await hash(password, saltRounds);
 
     // Gerar token de verificação de email
-    const verificationToken = crypto.randomBytes(32).toString('hex');
+    const verificationToken = randomBytes(32).toString('hex');
     const verificationExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 horas
 
     // Iniciar uma transação para garantir que ambas as inserções sejam bem-sucedidas
@@ -251,7 +251,7 @@ app.post('/api/login', async (req, res) => {
     const user = userResult.rows[0];
     
     // Verificar senha
-    const passwordMatch = await bcrypt.compare(password, user.password_hash);
+    const passwordMatch = await compare(password, user.password_hash);
     
     if (!passwordMatch) {
       return res.status(401).json({ 
@@ -365,7 +365,7 @@ app.post('/api/reenviar-verificacao', async (req, res) => {
     }
 
     // Gerar novo token de verificação
-    const newToken = crypto.randomBytes(32).toString('hex');
+    const newToken = randomBytes(32).toString('hex');
     const tokenExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 horas
 
     // Atualizar token na tabela users
@@ -455,7 +455,7 @@ app.post('/api/user/update-password', async (req, res) => {
     const user = userResult.rows[0];
 
     // Verificar senha atual
-    const passwordMatch = await bcrypt.compare(currentPassword, user.password_hash);
+    const passwordMatch = await compare(currentPassword, user.password_hash);
     if (!passwordMatch) {
       return res.status(401).json({
         status: 'error',
@@ -465,7 +465,7 @@ app.post('/api/user/update-password', async (req, res) => {
 
     // Hash da nova senha
     const saltRounds = 10;
-    const newPasswordHash = await bcrypt.hash(newPassword, saltRounds);
+    const newPasswordHash = await hash(newPassword, saltRounds);
 
     // Atualizar senha no banco de dados
     await pool.query(
@@ -528,7 +528,7 @@ app.post('/api/user/update-email', async (req, res) => {
     const user = userResult.rows[0];
 
     // Verificar senha
-    const passwordMatch = await bcrypt.compare(password, user.password_hash);
+    const passwordMatch = await compare(password, user.password_hash);
     if (!passwordMatch) {
       return res.status(401).json({
         status: 'error',
@@ -811,7 +811,7 @@ app.post('/api/forgot-password', async (req, res) => {
  
     // Hash da nova senha
     const saltRounds = 10;
-    const newPasswordHash = await bcrypt.hash(newPassword, saltRounds);
+    const newPasswordHash = await hash(newPassword, saltRounds);
  
     // Atualizar a senha e limpar o token
     const client = await pool.connect();

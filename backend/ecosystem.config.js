@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   apps: [{
     name: 'avitron-api',
     script: 'server.js',
@@ -12,4 +12,4 @@ module.exports = {
       PORT: 8080
     }
   }]
-}; 
+};

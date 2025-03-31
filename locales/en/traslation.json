@@ -1,0 +1,64 @@
+{
+  "language": {
+    "change": "Change language to {{name}}",
+    "select": "Select language"
+  },
+  "footer": {
+    "logo": {
+      "alt": "AviTron Logo"
+    },
+    "description": "Where technology and imagination merge to create unique dimensional experiences in the digital multiverse.",
+    "multiverse": {
+      "title": "AviTron Multiverse",
+      "item1": {
+        "title": "AviTronians will have original and new content from kitbash3D!",
+        "date": "Mar, 2025",
+        "category": "KITBASH3D"
+      },
+      "item2": {
+        "title": "Have ideas, dreams and fantasies? Bring them to AviTron Multiverse!",
+        "date": "Mar, 2025",
+        "category": "IDEATION"
+      },
+      "item3": {
+        "title": "Transform your fantasies into reality!",
+        "date": "Mar, 2025",
+        "category": "TRANSFORMATION"
+      }
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "whatsapp": "WhatsApp",
+      "tiktok": "TikTok"
+    },
+    "terminal": {
+      "scanning": "Scanning dimensional anomalies...",
+      "noAnomalies": "No anomalies detected within current parameters.",
+      "analyzingNetwork": "Analyzing multidimensional network...",
+      "stableConnections": "Stable connections across all 7 main planes.",
+      "queryingUsers": "Querying user database...",
+      "activeCreators": "42 active creators in Nexus-Prime dimension.",
+      "monitoringFlow": "Monitoring interdimensional creative flow...",
+      "activityPeak": "Activity peak detected in visual design sector.",
+      "checkingUpdates": "Checking system updates...",
+      "systemUpdated": "AviTron system updated to version 1.2.5.",
+      "establishing": "Establishing dimensional connections...",
+      "accessGranted": "Access granted. Welcome to AviTron Multiverse.",
+      "exploreWorlds": "explore_worlds()",
+      "createUniverse": "create_universe()",
+      "connectMinds": "connect_minds()",
+      "connections": "connections",
+      "active": "active",
+      "status": "status",
+      "online": "online"
+    },
+    "rights": "All rights reserved."
+  },
+  "homePage": {
+  "scrollToGallery": "Scroll to Gallery",
+  "galleryTitle": "Image Gallery"
+}
+}
+
+

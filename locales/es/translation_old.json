@@ -1,0 +1,85 @@
+{
+  "header": {
+    "menu": {
+      "quickstart": "Inicio Rápido",
+      "destinations": "Destinos",
+      "worldMap": "Mapa Mundial",
+      "wishlist": "Lista de Deseos",
+      "buyLinden": "Comprar Linden",
+      "buyLand": "Comprar Terreno",
+      "aboutLand": "Sobre Terrenos",
+      "undevelopedLand": "Terreno Sin Desarrollar",
+      "auctions": "Subastas",
+      "landRentals": "Alquiler de Terrenos",
+      "privateRegion": "Región Privada",
+      "myLindenHome": "Mi Hogar Linden",
+      "events": "Eventos",
+      "groups": "Grupos",
+      "classifieds": "Clasificados",
+      "allDestinations": "Todos los Destinos",
+      "editorsPicks": "Selección del Editor",
+      "recentlyAdded": "Agregados Recientemente",
+      "popularPlaces": "Lugares Populares",
+      "help": "Ayuda",
+      "support": "Soporte",
+      "downloads": "Descargas",
+      "systemRequirements": "Requisitos del Sistema",
+      "changePassword": "Cambiar Contraseña",
+      "knowledgeBase": "Base de Conocimiento",
+      "issueTracker": "Seguimiento de Problemas",
+      "newFeatures": "Nuevas Funciones",
+      "answers": "Respuestas",
+      "supportHistory": "Historial de Soporte"
+    }
+  },
+  "auth": {
+    "login": {
+      "email": "Dirección de Correo",
+      "password": "Contraseña",
+      "forgot": "¿Olvidaste tu contraseña?",
+      "noAccount": "¿No tienes una cuenta?",
+      "createAccount": "Crear una",
+      "rememberMe": "Recordarme"
+    },
+    "register": {
+      "title": "Crear Cuenta",
+      "fullName": "Nombre Completo",
+      "email": "Dirección de Correo",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar Contraseña",
+      "terms": "Acepto los Términos de Servicio y la Política de Privacidad",
+      "button": "Crear Cuenta",
+      "haveAccount": "¿Ya tienes una cuenta?",
+      "success": "¡Cuenta creada exitosamente!",
+      "login": "Iniciar Sesión"
+    }
+  },
+  "footer": {
+    "products": "Productos",
+    "marketplace": "Mercado",
+    "landStore": "Tienda de Terrenos",
+    "lindenExchange": "Cambio de Linden",
+    "destinations": "Destinos",
+    "resources": "Recursos",
+    "support": "Soporte",
+    "community": "Comunidad",
+    "events": "Eventos",
+    "blogs": "Blogs",
+    "company": "Compañía",
+    "about": "Acerca de",
+    "careers": "Carreras",
+    "press": "Prensa",
+    "contact": "Contacto",
+    "terms": "Términos de Servicio",
+    "privacy": "Política de Privacidad",
+    "cookies": "Política de Cookies"
+  },
+  "headerBranding": {
+    "logo": {
+      "alt": "Logo de AviTron"
+    },
+    "mobile": {
+      "toggleMenu": "Alternar menú"
+    }
+  }
+}

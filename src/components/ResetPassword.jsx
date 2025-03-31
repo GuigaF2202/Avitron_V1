@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const ResetPassword = () => {
+  const { t } = useTranslation();
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [token, setToken] = useState('');
@@ -20,7 +22,7 @@ const ResetPassword = () => {
     const tokenFromUrl = query.get('token');
     
     if (!tokenFromUrl) {
-      setError('Token de redefinição não fornecido');
+      setError(t('reset_password.token_missing', 'Token de redefinição não fornecido'));
       setLoading(false);
       return;
     }
@@ -34,29 +36,29 @@ const ResetPassword = () => {
         if (response.data.status === 'success') {
           setTokenValid(true);
         } else {
-          setError('Token inválido ou expirado');
+          setError(t('reset_password.token_invalid', 'Token inválido ou expirado'));
         }
       } catch (err) {
-        setError('O token é inválido ou expirou. Por favor, solicite uma nova redefinição de senha.');
+        setError(t('reset_password.token_expired', 'O token é inválido ou expirou. Por favor, solicite uma nova redefinição de senha.'));
       } finally {
         setLoading(false);
       }
     };
 
     verifyToken();
-  }, [location]);
+  }, [location, t]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     // Validação básica
     if (password !== confirmPassword) {
-      setError('As senhas não coincidem');
+      setError(t('reset_password.passwords_not_match', 'As senhas não coincidem'));
       return;
     }
 
     if (password.length < 8) {
-      setError('A senha deve ter pelo menos 8 caracteres');
+      setError(t('reset_password.password_too_short', 'A senha deve ter pelo menos 8 caracteres'));
       return;
     }
 
@@ -76,10 +78,10 @@ const ResetPassword = () => {
           navigate('/login');
         }, 3000);
       } else {
-        setError('Erro ao redefinir a senha');
+        setError(t('reset_password.reset_error', 'Erro ao redefinir a senha'));
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Erro ao redefinir a senha');
+      setError(err.response?.data?.message || t('reset_password.reset_error', 'Erro ao redefinir a senha'));
     } finally {
       setLoading(false);
     }
@@ -90,7 +92,7 @@ const ResetPassword = () => {
       <div className="flex justify-center items-center min-h-screen bg-gray-100">
         <div className="p-8 max-w-md w-full bg-white rounded-lg shadow-md">
           <h1 className="text-2xl font-bold text-center text-indigo-600 mb-6">
-            Verificando...
+            {t('reset_password.verifying')}
           </h1>
           <div className="flex justify-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
@@ -105,7 +107,7 @@ const ResetPassword = () => {
       <div className="flex justify-center items-center min-h-screen bg-gray-100">
         <div className="p-8 max-w-md w-full bg-white rounded-lg shadow-md">
           <h1 className="text-2xl font-bold text-center text-red-600 mb-6">
-            Erro na Redefinição
+            {t('reset_password.error_title')}
           </h1>
           <p className="text-center text-gray-700 mb-6">{error}</p>
           <div className="flex justify-center">
@@ -113,7 +115,7 @@ const ResetPassword = () => {
               onClick={() => navigate('/forgot-password')}
               className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors"
             >
-              Solicitar Nova Redefinição
+              {t('reset_password.request_new')}
             </button>
           </div>
         </div>
@@ -126,17 +128,17 @@ const ResetPassword = () => {
       <div className="flex justify-center items-center min-h-screen bg-gray-100">
         <div className="p-8 max-w-md w-full bg-white rounded-lg shadow-md">
           <h1 className="text-2xl font-bold text-center text-green-600 mb-6">
-            Senha Redefinida!
+            {t('reset_password.success_title')}
           </h1>
           <p className="text-center text-gray-700 mb-6">
-            Sua senha foi redefinida com sucesso. Você será redirecionado para a página de login em alguns segundos.
+            {t('reset_password.success_message')}
           </p>
           <div className="flex justify-center">
             <button
               onClick={() => navigate('/login')}
               className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors"
             >
-              Ir para Login
+              {t('reset_password.go_login')}
             </button>
           </div>
         </div>
@@ -148,7 +150,7 @@ const ResetPassword = () => {
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="p-8 max-w-md w-full bg-white rounded-lg shadow-md">
         <h1 className="text-2xl font-bold text-center text-indigo-600 mb-6">
-          Redefinir Senha
+          {t('reset_password.title')}
         </h1>
         
         {error && (
@@ -160,34 +162,34 @@ const ResetPassword = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-              Nova Senha
+              {t('reset_password.new_password')}
             </label>
             <input
-  id="password"
-  type="password"
-  value={password}
-  onChange={(e) => setPassword(e.target.value)}
-  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-  placeholder="Digite sua nova senha"
-  required
-  autoComplete="new-password"
-/>
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder={t('reset_password.password_placeholder')}
+              required
+              autoComplete="new-password"
+            />
           </div>
           
           <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirm-password">
-              Confirmar Senha
+              {t('reset_password.confirm_password')}
             </label>
             <input
-  id="confirm-password"
-  type="password"
-  value={confirmPassword}
-  onChange={(e) => setConfirmPassword(e.target.value)}
-  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-  placeholder="Confirme sua nova senha"
-  required
-  autoComplete="new-password"
-/>
+              id="confirm-password"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder={t('reset_password.confirm_placeholder')}
+              required
+              autoComplete="new-password"
+            />
           </div>
           
           <div className="flex items-center justify-between">
@@ -196,7 +198,7 @@ const ResetPassword = () => {
               className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               disabled={loading}
             >
-              {loading ? 'Processando...' : 'Redefinir Senha'}
+              {loading ? t('reset_password.processing') : t('reset_password.submit')}
             </button>
           </div>
         </form>

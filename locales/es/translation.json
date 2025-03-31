@@ -1,25 +1,25 @@
 {
   "gallery": {
     "images": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": ""
+      "1": "Sueños más allá de la consciencia.",
+      "2": "Tecnología sin límites humanos.",
+      "3": "Evolución con adaptación y fusión.",
+      "4": "Ciudades escritas en código y memoria electrónica."
     },
-    "viewerInfo": "",
-    "navigation": "",
-    "title": "",
-    "subtitle": "",
-    "clickToExpand": ""
+    "viewerInfo": "Explorando los límites entre tecnología y humanidad en una estética cyberpunk futurista.",
+    "navigation": "Usa las flechas ← → para navegar",
+    "title": "Galería Cyberpunk",
+    "subtitle": "Explorando los límites entre tecnología y humanidad a través de imágenes",
+    "clickToExpand": "Clic para expandir"
   },
   "auth": {
     "login": {
       "success": "Login realizado com sucesso!",
-      "error": "Credenciais inválidas. Tente novamente.",
-      "title": "Entrar",
+      "error": "Correo o contraseña inválidos",
+      "title": "Iniciar Sesión",
       "subtitle": "Acesse o Metaverso Avitron",
       "processing": "Conectando...",
-      "button": "Entrar"
+      "button": "Iniciar Sesión"
     },
     "forgotPassword": "Esqueci minha senha",
     "username": "Nome de Usuário",
@@ -27,13 +27,13 @@
     "password": "Senha",
     "resetPassword": "Redefinir Senha",
     "register": {
-      "link": "Criar nova conta"
+      "link": "Regístrate"
     },
     "backToLogin": "Voltar para o login"
   },
   "cookies": {
-    "message": "",
-    "accept": ""
+    "message": "Este sitio utiliza cookies para mejorar su experiencia. Al continuar navegando, usted acepta nuestra política de cookies.",
+    "accept": "Aceptar cookies"
   },
   "dashboard": {
     "settings": {
@@ -123,28 +123,28 @@
   },
   "email": {
     "verification": {
-      "failed_message": "",
-      "token_missing": "Token de verificação não fornecido.",
-      "verifying": "",
-      "wait": "",
-      "success": "",
-      "success_message": "",
-      "enter_account": "",
-      "go_home": "",
-      "failed": "",
-      "resend": "",
-      "back_login": ""
+      "failed_message": "No pudimos verificar su correo electrónico. El enlace puede estar caducado o ser inválido.",
+      "token_missing": "Token de verificación no proporcionado.",
+      "verifying": "Verificando su correo electrónico",
+      "wait": "Espere mientras verificamos su dirección de correo electrónico...",
+      "success": "¡Correo Verificado!",
+      "success_message": "Su correo electrónico ha sido verificado con éxito. Su cuenta ahora está activa.",
+      "enter_account": "Iniciar sesión en su cuenta",
+      "go_home": "Ir a la página de inicio",
+      "failed": "Verificación Fallida",
+      "resend": "Reenviar correo de verificación",
+      "back_login": "Volver al inicio de sesión"
     },
     "resend": {
-      "email_required": "Por favor, informe seu endereço de email.",
-      "success": "Email de verificação reenviado com sucesso! Por favor, verifique sua caixa de entrada.",
-      "error": "Não foi possível reenviar o email de verificação. Tente novamente mais tarde.",
-      "title": "Reenviar Email de Verificação",
-      "subtitle": "Insira seu email para receber um novo link de verificação",
-      "email_label": "Email",
+      "email_required": "Por favor, ingrese su dirección de correo electrónico.",
+      "success": "¡Correo de verificación enviado con éxito! Por favor revise su bandeja de entrada.",
+      "error": "No se pudo reenviar el correo de verificación. Por favor, inténtelo de nuevo más tarde.",
+      "title": "Reenviar Correo de Verificación",
+      "subtitle": "Ingrese su correo para recibir un nuevo enlace de verificación",
+      "email_label": "Correo electrónico",
       "sending": "Enviando...",
-      "submit": "Reenviar Email de Verificação",
-      "back_login": "Voltar para Login"
+      "submit": "Reenviar Correo de Verificación",
+      "back_login": "Volver al inicio de sesión"
     }
   },
   "footer": {
@@ -190,29 +190,29 @@
     "logo": {
       "alt": ""
     },
-    "description": "",
+    "description": "AviTron es un mundo virtual donde la creatividad, la tecnología y la humanidad convergen. Únete a nosotros en la construcción del futuro de la interacción digital.",
     "social": {
       "facebook": "",
       "instagram": "",
       "whatsapp": "",
       "tiktok": ""
     },
-    "rights": ""
+    "rights": "Todos los derechos reservados."
   },
   "header": {
     "menu": {
-      "whatNext": "",
-      "basics": "",
-      "tutorials": "",
-      "create": "",
-      "shopping": "",
-      "marketplace": "",
-      "favorites": "",
-      "purchases": "",
-      "community": "",
-      "search": "",
-      "blogs": "",
-      "forums": ""
+      "whatNext": "¿Qué Sigue?",
+      "basics": "Básicos",
+      "tutorials": "Tutoriales",
+      "create": "Crear",
+      "shopping": "Compras",
+      "marketplace": "Mercado",
+      "favorites": "Favoritos",
+      "purchases": "Compras",
+      "community": "Comunidad",
+      "search": "Buscar",
+      "blogs": "Blogs",
+      "forums": "Foros"
     },
     "logo": {
       "alt": "AviTron Logo"
@@ -226,17 +226,17 @@
     "galleryTitle": "Image Gallery"
   },
   "language": {
-    "en": "",
-    "es": "",
-    "pt": "",
-    "change": "",
-    "select": "",
+    "en": "Inglés",
+    "es": "Español",
+    "pt": "Portugués",
+    "change": "Cambiar idioma a {{name}}",
+    "select": "Seleccionar idioma",
     "errors": {
-      "getting": "Error getting language:",
-      "saving": "Could not save language to localStorage:",
-      "changing": "Error changing language:",
-      "effect": "Error in language effect:",
-      "hook": "Error in useLanguage hook:"
+      "getting": "Error al obtener el idioma",
+      "saving": "No se pudo guardar el idioma en localStorage",
+      "changing": "Error al cambiar el idioma",
+      "effect": "Error en el efecto de idioma",
+      "hook": "Error en el hook useLanguage"
     }
   },
   "marketplace": {
@@ -317,47 +317,47 @@
     "login": "Faça login"
   },
   "reset_password": {
-    "token_missing": "Token de redefinição não fornecido",
-    "token_invalid": "Token inválido ou expirado",
-    "token_expired": "O token é inválido ou expirou. Por favor, solicite uma nova redefinição de senha.",
-    "passwords_not_match": "As senhas não coincidem",
-    "password_too_short": "A senha deve ter pelo menos 8 caracteres",
-    "reset_error": "Erro ao redefinir a senha",
-    "verifying": "",
-    "error_title": "",
-    "request_new": "",
-    "success_title": "",
-    "success_message": "",
-    "go_login": "",
-    "title": "",
-    "new_password": "",
-    "password_placeholder": "",
-    "confirm_password": "",
-    "confirm_placeholder": "",
-    "processing": "",
-    "submit": ""
+    "token_missing": "Token de restablecimiento no proporcionado",
+    "token_invalid": "Token inválido o expirado",
+    "token_expired": "El token es inválido o ha expirado. Por favor, solicite un nuevo restablecimiento de contraseña.",
+    "passwords_not_match": "Las contraseñas no coinciden",
+    "password_too_short": "La contraseña debe tener al menos 8 caracteres",
+    "reset_error": "Error al restablecer la contraseña",
+    "verifying": "Verificando...",
+    "error_title": "Error en el Restablecimiento",
+    "request_new": "Solicitar Nuevo Restablecimiento",
+    "success_title": "¡Contraseña Restablecida!",
+    "success_message": "Su contraseña ha sido restablecida con éxito. Será redirigido a la página de inicio de sesión en unos segundos.",
+    "go_login": "Ir a Inicio de Sesión",
+    "title": "Restablecer Contraseña",
+    "new_password": "Nueva Contraseña",
+    "password_placeholder": "Ingrese su nueva contraseña",
+    "confirm_password": "Confirmar Contraseña",
+    "confirm_placeholder": "Confirme su nueva contraseña",
+    "processing": "Procesando...",
+    "submit": "Restablecer Contraseña"
   },
   "sections": {
     "future": {
-      "title": "",
-      "eyebrow": "",
-      "description": "",
-      "button": ""
+      "title": "SUEÑOS DEL FUTURO",
+      "eyebrow": "EL FUTURO",
+      "description": "Tus ojos reflejan el futuro que construimos, donde cada luz de la ciudad cuenta una historia de posibilidades infinitas y sueños digitales.",
+      "button": "Explorar →"
     },
     "nomad": {
-      "title": "",
-      "eyebrow": "",
-      "description": "",
-      "button": ""
+      "title": "NÓMADA DIGITAL",
+      "eyebrow": "CAZADOR DE RELIQUIAS",
+      "description": "En el desierto de la civilización perdida, ella caza reliquias del pasado con la precisión del futuro – la frontera no es un lugar, sino un estado mental indomable.",
+      "button": "Descubrir →"
     },
     "interface": {
-      "title": "",
-      "eyebrow": "",
-      "description": "",
-      "button": ""
+      "title": "INTERFAZ ONÍRICA",
+      "eyebrow": "03 / ESPACIO",
+      "description": "Mientras nuestros cuerpos se fusionan con la tecnología, nuestras mentes siguen soñando con cielos azules – la frontera final no está en las estrellas, sino en reconciliar nuestra humanidad con nuestro futuro digital.",
+      "button": "Explorar →"
     }
   },
   "app": {
-    "mainContent": "Main content"
+    "mainContent": "Contenido principal"
   }
 }
