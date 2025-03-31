@@ -1,4 +1,6 @@
-export default {
+// Arquivo: backend/ecosystem.config.js
+
+const config = {
   apps: [{
     name: 'avitron-api',
     script: 'server.js',
@@ -13,3 +15,5 @@ export default {
     }
   }]
 };
+
+export default config;

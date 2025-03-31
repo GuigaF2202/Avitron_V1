@@ -1,6 +1,8 @@
-const http = require('http');
-const fs = require('fs');
-const os = require('os');
+// Arquivo: backend/monitoring.js
+
+import http from 'http';
+import fs from 'fs';
+import os from 'os';
 
 // Coletar métricas a cada 5 minutos
 setInterval(() => {
@@ -22,16 +24,22 @@ setInterval(() => {
     uptime: process.uptime()
   };
   
-  // Registrar métricas em arquivo de log
-  fs.appendFile(
-    'logs/metrics.log', 
-    JSON.stringify(metrics) + '\n', 
-    (err) => {
-      if (err) console.error('Erro ao registrar métricas:', err);
+  // Criar diretório de logs se não existir
+  fs.mkdir('logs', { recursive: true }, (err) => {
+    if (err && err.code !== 'EEXIST') {
+      console.error('Erro ao criar diretório de logs:', err);
+      return;
     }
-  );
-  
+    
+    // Registrar métricas em arquivo de log
+    fs.appendFile(
+      'logs/metrics.log', 
+      JSON.stringify(metrics) + '\n', 
+      (err) => {
+        if (err) console.error('Erro ao registrar métricas:', err);
+      }
+    );
+  });
 }, 300000); // 5 minutos
 
-// Adicionar ao server.js:
-// require('./monitoring'); 
+export default {}; // Exportação necessária para ES Modules

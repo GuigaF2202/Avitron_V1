@@ -1,5 +1,7 @@
+// frontend/vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
@@ -9,12 +11,12 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8080',
         changeOrigin: true,
-        secure: true
+        secure: false
       }
     }
   },
   build: {
-    outDir: 'dist',
+    outDir: '../dist',
     assetsDir: 'assets',
     sourcemap: false,
     minify: 'terser',
@@ -23,17 +25,14 @@ export default defineConfig({
         drop_console: true
       }
     },
-    assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.svg', '**/*.webp', '**/*.gif'],
-    rollupOptions: {
-      external: ['i18next-http-backend']
-    }
+    assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.svg', '**/*.webp', '**/*.gif']
   },
   resolve: {
     alias: {
-      '@': '/src',
-      '@components': '/src/components',
-      '@containers': '/src/containers',
-      '@contexts': '/src/contexts'
+      '@': path.resolve(__dirname, './src'),
+      '@components': path.resolve(__dirname, './src/components'),
+      '@containers': path.resolve(__dirname, './src/containers'),
+      '@contexts': path.resolve(__dirname, './src/contexts')
     }
   }
 });

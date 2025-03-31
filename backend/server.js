@@ -1,17 +1,21 @@
-// Carregar variáveis de ambiente
-require('dotenv').config();
-
+import dotenv from 'dotenv';
 import express from 'express';
-import { Pool } from 'pkg';
+import { Pool } from 'pg'; // Corrigido de 'pkg' para 'pg'
 import { hash, compare } from 'bcrypt';
 import cors from 'cors';
-import { json } from 'body-parser';
+import bodyParser from 'body-parser';
 import { v4 as uuidv4 } from 'uuid';
-import { createTransport } from 'nodemailer';
-import { randomBytes } from 'crypto';
+import nodemailer from 'nodemailer';
+import crypto from 'crypto';
+
+// Inicializar variáveis de ambiente
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 8080;
+const { json } = bodyParser;
+const { createTransport } = nodemailer;
+const { randomBytes } = crypto;
 
 // Configuração de proxy confiável (mais segura)
 // Especifique os IPs do proxy que você confia, ou desative se não estiver usando proxy

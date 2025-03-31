@@ -1,5 +1,7 @@
-const { Pool } = require('pg');
-const { logger } = require('../utils/logger');
+// Arquivo: backend/server/config/database.js
+
+import { Pool } from 'pg';
+import { logger } from '../utils/logger.js';
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -20,7 +22,5 @@ const connectDB = async () => {
   }
 };
 
-module.exports = {
-  connectDB,
-  query: (text, params) => pool.query(text, params)
-};
+export { connectDB, pool };
+export const query = (text, params) => pool.query(text, params);
